@@ -1,3 +1,3 @@
 # meharban-singh.github.io
 
-Portfolio Website [here](meharbansingh.me)
+Portfolio Website [here](http://meharbansingh.me)
