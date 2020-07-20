@@ -488,7 +488,7 @@ body {
 
 #header #helloworld {
   text-align: center;
-  display: none;
+  display: block;
 }
 
 #header h4 {
