@@ -58,20 +58,26 @@ $(document).ready(function () {
 		.then(data => {
 			for (let project of data) {
 				let container = document.createElement("a");
+				container.setAttribute("href", project.html_url);
+				container.setAttribute("target", "_blank");
 				container.classList.add("project-card");
 
 				let title = document.createElement("h1");
 				title.textContent = project.name;
 				container.append(title);
 
-				let desc = document.createElement("p");
-				desc.textContent = project.description;
-				container.append(desc);
+				if (project.description) {
+					let desc = document.createElement("p");
+					desc.textContent = project.description;
+					container.append(desc);
+				}
 
-				let languages = document.createElement("p");
-				languages.classList.add("languages");
-				languages.textContent = project.language;
-				container.append(languages);
+				if (project.language) {
+					let languages = document.createElement("p");
+					languages.classList.add("languages");
+					languages.textContent = project.language;
+					container.append(languages);
+				}
 
 				$("#portfolio .project-section").append(container);
 			}
