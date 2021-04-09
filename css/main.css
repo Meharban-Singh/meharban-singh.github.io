@@ -480,7 +480,33 @@ span.amp {
 /* DEFAULT MOBILE STYLE */
 body {
 	width: 92%;
+	overflow: hidden;
 	margin: 0 auto;
+}
+
+body::-webkit-scrollbar {
+	background: rgb(32, 32, 32);
+	width: 15px;
+	height: 15px;
+}
+body::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+body::-webkit-scrollbar-thumb {
+	background-image: -webkit-linear-gradient(
+		45deg,
+		#1d2671,
+		#c33764
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		45deg,
+		#1d2671,
+		#c33764
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	border-radius: 10px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.12) 0 3px 13px 1px;
 }
 
 /* Center page without wrapper */
@@ -560,7 +586,17 @@ body {
 
 /* Backgrounds */
 .bg-1 {
-	background-color: #202020;
+	background: #c33764; /* fallback for old browsers */
+	background: -webkit-linear-gradient(
+		to right,
+		#1d2671,
+		#c33764
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to right,
+		#1d2671,
+		#c33764
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /* Header */
