@@ -614,7 +614,7 @@ body {
 	border-radius: 4px 4px 0 0;
 	-moz-border-radius: 4px 4px 0 0;
 	-webkit-border-radius: 4px 4px 0 0;
-	margin-right: 10px;
+	margin-right: 0px;
 }
 
 .tab a {
@@ -1292,6 +1292,10 @@ Change widths as necessary
 @media (max-width: 768px) {
 	.progress-wrapper {
 		margin-bottom: 50px;
+	}
+
+	.tab a {
+		padding: 8px 25px 8px 25px;
 	}
 }
 
