@@ -584,6 +584,20 @@ body::-webkit-scrollbar-thumb {
 	width: 220px;
 }
 
+#contact a {
+	text-decoration: underline;
+}
+
+@media only screen and (max-width: 500px) {
+	.photo {
+		width: 100% !important;
+		height: auto !important;
+	}
+
+	#about {
+		text-align: center;
+	}
+}
 /* Backgrounds */
 .bg-1 {
 	background: #c33764; /* fallback for old browsers */
