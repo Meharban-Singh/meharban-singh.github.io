@@ -85,6 +85,15 @@ $(document).ready(function () {
 					}
 				}
 
+				if (project.has_pages) {
+					let demoLink = document.createElement("a");
+					demoLink.classList.add("demo-link");
+					demoLink.setAttribute("href", "./" + project.name);
+					demoLink.setAttribute("target", "_blank");
+					demoLink.textContent = "Demo";
+					container.append(demoLink);
+				}
+
 				$("#portfolio .project-section").append(container);
 			}
 		});
