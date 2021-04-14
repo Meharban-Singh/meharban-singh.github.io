@@ -55,7 +55,7 @@ $(document).ready(function () {
 
 	fetch("https://api.github.com/users/Meharban-Singh/repos")
 		.then(res => res.json())
-		.then(data => {
+		.then(async data => {
 			for (let project of data) {
 				let container = document.createElement("a");
 				container.setAttribute("href", project.html_url);
@@ -72,11 +72,17 @@ $(document).ready(function () {
 					container.append(desc);
 				}
 
-				if (project.language) {
-					let languages = document.createElement("p");
-					languages.classList.add("languages");
-					languages.textContent = project.language;
-					container.append(languages);
+				if (project.languages_url) {
+					const req = await fetch(project.languages_url);
+					const json = await req.json();
+					let langs = Object.keys(json).join(", ");
+
+					if (langs) {
+						let languages = document.createElement("p");
+						languages.classList.add("languages");
+						languages.textContent = langs;
+						container.append(languages);
+					}
 				}
 
 				$("#portfolio .project-section").append(container);
