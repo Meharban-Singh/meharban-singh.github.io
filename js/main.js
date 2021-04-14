@@ -85,14 +85,23 @@ $(document).ready(function () {
 					}
 				}
 
+				let buttons = document.createElement("div");
+
 				if (project.has_pages) {
 					let demoLink = document.createElement("a");
 					demoLink.classList.add("demo-link");
 					demoLink.setAttribute("href", "./" + project.name);
 					demoLink.setAttribute("target", "_blank");
 					demoLink.textContent = "Demo";
-					container.append(demoLink);
+					buttons.append(demoLink);
 				}
+
+				let codeLink = document.createElement("a");
+				codeLink.classList.add("demo-link");
+				codeLink.textContent = "Code";
+				buttons.append(codeLink);
+
+				container.append(buttons);
 
 				$("#portfolio .project-section").append(container);
 			}

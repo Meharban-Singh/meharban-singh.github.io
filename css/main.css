@@ -209,13 +209,20 @@ th {
 
 th {
 	padding: 800px;
-	border-bottom: 0 solid #333;
+	border-bottom: 0 solid #2e8b57;
 }
 
 .demo-link {
 	font-size: 14px;
 	padding: 10px;
-	border: 1px solid #333;
+	border: 1px solid #2e8b57;
+	margin: 5px;
+}
+
+.demo-link:hover {
+	color: #fff;
+	background-color: #2e8b57;
+	border: 1px solid #2e8b57;
 }
 
 /* FORMS */
@@ -1024,10 +1031,6 @@ body::-webkit-scrollbar-thumb {
 
 .project-card h1 {
 	font-size: 20px;
-}
-
-.project-card:hover {
-	opacity: 0.7;
 }
 
 .project-card .languages {
