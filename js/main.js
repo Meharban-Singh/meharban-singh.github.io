@@ -72,17 +72,11 @@ $(document).ready(function () {
 					container.append(desc);
 				}
 
-				if (project.languages_url) {
-					const req = await fetch(project.languages_url);
-					const json = await req.json();
-					let langs = Object.keys(json).join(", ");
-
-					if (langs) {
-						let languages = document.createElement("p");
-						languages.classList.add("languages");
-						languages.textContent = langs;
-						container.append(languages);
-					}
+				if(project.language) {
+					let languages = document.createElement("p");
+					languages.classList.add("languages");
+					languages.textContent = project.language;
+					container.append(languages);
 				}
 
 				let buttons = document.createElement("div");
