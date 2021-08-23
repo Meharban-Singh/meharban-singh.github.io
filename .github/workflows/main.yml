@@ -1,35 +1,30 @@
-name: Generate Sitemap
+name: Generate xml sitemap
 
-# Controls when the workflow will run
 on:
   push:
-    branches:
-    - main
-    - release/*
-    
-  pull_request:
-    branches:
-    - main
+    branches: [ master ]
+  
+  workflow_dispatch: # Manually run this. adds a 'Run workflow' button
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "generate"
-  generate:
-    # The type of runner that the job will run on
+  sitemap_job:
     runs-on: ubuntu-latest
+    name: Generate a sitemap
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:	
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 
 
-      - uses: cicirello/generate-sitemap@v1.8.1
-        with:
-          # The url of your webpage
-          base-url-path: https://meharbansingh.me
+    - name: Generate the sitemap
+      id: sitemap
+      uses: cicirello/generate-sitemap@v1
+      with:
+        base-url-path: https://meharbansingh.me/
 
-          # Space separated list of additional file extensions to include in sitemap.
-          # additional-extensions: # option
+    - name: Output stats
+      run: |
+        echo "sitemap-path = ${{ steps.sitemap.outputs.sitemap-path }}"
+        echo "url-count = ${{ steps.sitemap.outputs.url-count }}"
+        echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
