@@ -1,3 +1,10 @@
+// Cool
+console.clear();
+console.log(
+	"%cHOT DANGEROUS STUFF HERE!! AUTHORIZED PERSONNEL ONLY!",
+	"font-size: 20px; border: 5px solid red; color: red; font-weight: 900; text-align: center; padding: 20px; background-color: white"
+);
+
 $(document).ready(function () {
 	// Logo
 	var $logo = $("#logo");
@@ -72,7 +79,7 @@ $(document).ready(function () {
 					container.append(desc);
 				}
 
-				if(project.language) {
+				if (project.language) {
 					let languages = document.createElement("p");
 					languages.classList.add("languages");
 					languages.textContent = project.language;
