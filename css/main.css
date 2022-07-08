@@ -1305,6 +1305,20 @@ Change widths as necessary
 	}
 }
 
+#resume .g2 {
+	text-align: center;
+	padding: 2em;
+}
+
+
+#resume h3 {
+	font-family: 'Alegreya Sans SC';
+}
+
+#resume .label {
+	background-color: #c33764;
+}
+
 #resume .g3 {
 	text-align: center;
 }
