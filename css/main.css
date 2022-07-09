@@ -849,6 +849,11 @@ body::-webkit-scrollbar-thumb {
 	width: 100%;
 }
 
+.etabs span {
+	font-family: 'Alegreya Sans SC';
+	font-size: 1.2rem;
+}
+
 .image-overlay {
 	position: absolute;
 	z-index: 5;
@@ -1316,7 +1321,7 @@ Change widths as necessary
 }
 
 #resume .label {
-	background-color: #c33764;
+	background-color: #27774a;
 }
 
 #resume .g3 {
