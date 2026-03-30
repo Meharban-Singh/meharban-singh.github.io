@@ -89,10 +89,11 @@ $(document).ready(function () {
 
 				let buttons = document.createElement("div");
 
-				if (project.has_pages) {
+				let projectLink = getProjectDemoLink(project)
+				if (projectLink != null) {
 					let demoLink = document.createElement("a");
 					demoLink.classList.add("demo-link");
-					demoLink.setAttribute("href", "./" + project.name);
+					demoLink.setAttribute("href", projectLink);
 					demoLink.setAttribute("target", "_blank");
 					demoLink.textContent = "Demo";
 					buttons.append(demoLink);
@@ -108,4 +109,16 @@ $(document).ready(function () {
 				$("#portfolio .project-section").append(container);
 			}
 		});
+
+		function getProjectDemoLink(project) {
+			if (project.homepage) {
+				return project.homepage;
+			}
+
+			if (project.has_pages) {
+				return "./" + project.name;
+			}
+			
+			return null;
+		}
 });
