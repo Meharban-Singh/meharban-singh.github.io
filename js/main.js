@@ -63,44 +63,53 @@ $(document).ready(function () {
 	fetch("https://api.github.com/users/Meharban-Singh/repos")
 		.then(res => res.json())
 		.then(async data => {
+			var MAX_DESCRIPTION_LENGTH = 100;
+
 			data = data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 			for (let project of data) {
-				let container = document.createElement("a");
-				container.setAttribute("href", project.html_url);
-				container.setAttribute("target", "_blank");
+				let container = document.createElement("div");
 				container.classList.add("project-card");
+
+				let infoContainer = document.createElement("div");
+				infoContainer.classList.add("project-info");
 
 				let title = document.createElement("h1");
 				title.textContent = project.name;
-				container.append(title);
+				infoContainer.append(title);
 
-				if (project.description) {
-					let desc = document.createElement("p");
-					desc.textContent = project.description;
-					container.append(desc);
-				}
+				let desc = document.createElement("p");
+				desc.classList.add("project-description");
+				desc.textContent = getTrimmedDescription(project.description, MAX_DESCRIPTION_LENGTH);
+				infoContainer.append(desc);
 
-				if (project.language) {
-					let languages = document.createElement("p");
-					languages.classList.add("languages");
-					languages.textContent = project.language;
-					container.append(languages);
-				}
+				let languages = document.createElement("p");
+				languages.classList.add("languages");
+				languages.textContent = project.language ? project.language : "Unknown";
+				infoContainer.append(languages);
+			
+
+				container.appendChild(infoContainer);
 
 				let buttons = document.createElement("div");
+				buttons.classList.add("project-buttons");
 
-				let projectLink = getProjectDemoLink(project)
-				if (projectLink != null) {
-					let demoLink = document.createElement("a");
-					demoLink.classList.add("demo-link");
+				let projectLink = getProjectDemoLink(project);
+				let demoLink = document.createElement("a");
+				demoLink.classList.add("demo-link");
+				demoLink.textContent = projectLink ? "Demo" : "No Demo";
+				if (projectLink) {
 					demoLink.setAttribute("href", projectLink);
 					demoLink.setAttribute("target", "_blank");
-					demoLink.textContent = "Demo";
-					buttons.append(demoLink);
+				} else {
+					demoLink.classList.add("is-disabled");
+					demoLink.setAttribute("aria-disabled", "true");
 				}
+				buttons.append(demoLink);
 
 				let codeLink = document.createElement("a");
 				codeLink.classList.add("demo-link");
+				codeLink.setAttribute("href", project.html_url);
+				codeLink.setAttribute("target", "_blank");
 				codeLink.textContent = "Code";
 				buttons.append(codeLink);
 
@@ -109,6 +118,18 @@ $(document).ready(function () {
 				$("#portfolio .project-section").append(container);
 			}
 		});
+
+		function getTrimmedDescription(description, maxLength) {
+			if (!description) {
+				return "No description provided.";
+			}
+
+			if (description.length <= maxLength) {
+				return description;
+			}
+
+			return description.substring(0, maxLength - 3).trimEnd() + "...";
+		}
 
 		function getProjectDemoLink(project) {
 			if (project.homepage) {
