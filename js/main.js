@@ -63,6 +63,7 @@ $(document).ready(function () {
 	fetch("https://api.github.com/users/Meharban-Singh/repos")
 		.then(res => res.json())
 		.then(async data => {
+			data = data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 			for (let project of data) {
 				let container = document.createElement("a");
 				container.setAttribute("href", project.html_url);
